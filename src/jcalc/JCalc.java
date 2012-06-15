@@ -1,18 +1,20 @@
 package jcalc;
 //Imports
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
 
 /**
  *  Daniel B.
- *  Version 0.01
- *  6/14/2012
+ *  Version 0.02
+ *  Last Revision Date: 
+ *       6/15/2012
  */
 
 /*
- * So far this program can take a simple expression and tell if it is 
- * multiplication, addition, subtraction or division.
+ * Can now take a simple expression and evaluate it correctly. Maybe make it 
+ * support order of operations?
+ * TODO: make it into an applet and thus a big rewrite.
  */
 
 public class JCalc {
@@ -45,51 +47,41 @@ public class JCalc {
                         //Currently this switch checks which method to use.
                         switch(char1){
                             case "+":
-                                System.out.println("Addition is required.");
-                                String readInput1 = readInput.replace("+", " ");
-                                String hi = "hello";
-                                // ??? 
-                                readInput1 = hi.split("hi", 3);
-                                
-                                //char[] charArray = readInput1.toCharArray();
-                                
-   //Arrays.sort(charArray);
-   System.out.println(readInput1);
-   //String aString = new String(charArray);
-  //return aString ;
-
-                                
-                                int first = Integer.parseInt(readInput1.substring(0, 1));
-                                int second = Integer.parseInt(readInput1.substring(2, 3));
-                                int result = first + second;
+                                String[] temp;
+                                String delimiter = "\\+";
+                                temp = readInput.split(delimiter);
+                                double first = Double.parseDouble(temp[0]);
+                                double second = Double.parseDouble(temp[1]);
+                                double result = first + second;
                                 System.out.println("\nThe result is " + result + ".\n");
                                 break;
                             case "-":
-                                System.out.println("Subtraction is required.");
-                                readInput1 = readInput.replace("-", " ");
-                                first = Integer.parseInt(readInput1.substring(0, 1));
-                                second = Integer.parseInt(readInput1.substring(2, 3));
+                                delimiter = "-";
+                                temp = readInput.split(delimiter);
+                                first = Double.parseDouble(temp[0]);
+                                second = Double.parseDouble(temp[1]);
                                 result = first - second;
                                 System.out.println("\nThe result is " + result + ".\n");
                                 break;
                             case "/":
-                                System.out.println("Division is required.");
-                                readInput1 = readInput.replace("/", " ");
-                                first = Integer.parseInt(readInput1.substring(0, 1));
-                                second = Integer.parseInt(readInput1.substring(2, 3));
+                                delimiter = "/";
+                                temp = readInput.split(delimiter);
+                                first = Double.parseDouble(temp[0]);
+                                second = Double.parseDouble(temp[1]);
                                 result = first / second;
                                 System.out.println("\nThe result is " + result + ".\n");
                                 break;
                             case "*":
-                                System.out.println("Multiplication is required.");
-                                readInput1 = readInput.replace("*", " ");
-                                first = Integer.parseInt(readInput1.substring(0, 1));
-                                second = Integer.parseInt(readInput1.substring(2, 3));
+                                delimiter = "\\*";
+                                temp = readInput.split(delimiter);
+                                first = Double.parseDouble(temp[0]);
+                                second = Double.parseDouble(temp[1]);
                                 result = first * second;
                                 System.out.println("\nThe result is " + result + ".\n");                                
                                 break;
                             default: 
                                 System.out.println("Unsupported or invalid method!");
+                                System.out.println("Something went really wrong if you got here.");
                                 break;
                         }
                     }           
@@ -108,7 +100,7 @@ public class JCalc {
                 }
             }
         }
-        catch (Exception e) {
+        catch (IOException | NumberFormatException e) {
             System.out.println("Fatal error has occurred."+e);
             System.exit(0);
         }
