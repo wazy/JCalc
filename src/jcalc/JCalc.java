@@ -1,15 +1,16 @@
 package jcalc;
 //Imports
+import java.awt.GridLayout;
 import javax.swing.*;
 
 /**
  * Daniel B. 
- * Version 0.03 
- * Last Revision Date: 6/27/2012
+ * Version 0.04
+ * Last Revision Date: 7/01/2012
  *
  * This revision entitles a beginning interface.
  * TODO: Order of operations, button layout, etc?
- *  
+ * ***BUG: NEGATIVE NUMBERS PRODUCE EMPTY STRING***
  */
 
 public class JCalc extends JFrame {
@@ -17,6 +18,7 @@ public class JCalc extends JFrame {
     public static void main(String[] args) {
         //Makes it visible.
         new JCalc().setVisible(true);
+        //JCalc().setSize(300, 300);
     }
     //buttons
     private JButton plusButton;
@@ -25,6 +27,7 @@ public class JCalc extends JFrame {
     private JButton multiplicationButton;
     private JButton equalsButton;
     private JButton clear;
+    private JButton b0,b1,b2,b3,b4,b5,b6,b7,b8,b9;
     //panels
     private JPanel middlePanel;
     private JPanel topPanel;
@@ -39,6 +42,8 @@ public class JCalc extends JFrame {
     private JMenuItem exitMenuItem;
     private JMenu fileMenu;
     private JMenuItem aboutMenuItem;
+    
+    double value = 0.0;
 
     public JCalc() {
         System.out.println("Initializing...");
@@ -48,6 +53,17 @@ public class JCalc extends JFrame {
     private void initComponents() {
 
         //buttons
+        b0 = new javax.swing.JButton();
+        b1 = new javax.swing.JButton();
+        b2 = new javax.swing.JButton();
+        b3 = new javax.swing.JButton();
+        b4 = new javax.swing.JButton();
+        b5 = new javax.swing.JButton();
+        b6 = new javax.swing.JButton();
+        b7 = new javax.swing.JButton();
+        b8 = new javax.swing.JButton();
+        b9 = new javax.swing.JButton();
+        
         plusButton = new javax.swing.JButton();
         subtractButton = new javax.swing.JButton();
         divideButton = new javax.swing.JButton();
@@ -91,8 +107,21 @@ public class JCalc extends JFrame {
         topPanel.add(equationLabel);
         topPanel.add(equationField);
 
-        buttonsPanel.setLayout(new java.awt.GridBagLayout());
+        //buttonsPanel.setLayout(new java.awt.GridBagLayout());
 
+        // Numbers 0-9
+        b0.setText("0");
+        b1.setText("1");
+        b2.setText("2");
+        b3.setText("3");
+        b4.setText("4");
+        b5.setText("5");
+        b6.setText("6");
+        b7.setText("7");
+        b8.setText("8");
+        b9.setText("9");
+        
+        //Rest
         plusButton.setText("+");
         subtractButton.setText("-");
         divideButton.setText("/");
@@ -110,8 +139,12 @@ public class JCalc extends JFrame {
         plusButton.addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                String part1 = equationField.getText();
+                System.out.println(part1);
+                double part2 = Double.parseDouble(part1);
+                value = value + part2;
                 String equation = equationField.getText();
-                equation = equation.concat("+");
+                equation = Double.toString(value);
                 equationField.setText(equation);
                 equationField.requestFocusInWindow();
             }
@@ -157,23 +190,125 @@ public class JCalc extends JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 equationField.setText("");
                 equationField.requestFocusInWindow();
-            }
+            }        
         });
+        b0.addActionListener(new java.awt.event.ActionListener() {
 
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                String equation = equationField.getText();
+                equation = equation.concat("0");
+                equationField.setText(equation);
+                equationField.requestFocusInWindow();
+            }        
+        });
+        b1.addActionListener(new java.awt.event.ActionListener() {
+
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                String equation = equationField.getText();
+                equation = equation.concat("1");
+                equationField.setText(equation);
+                equationField.requestFocusInWindow();
+            }        
+        });
+        b2.addActionListener(new java.awt.event.ActionListener() {
+
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                String equation = equationField.getText();
+                equation = equation.concat("2");
+                equationField.setText(equation);
+                equationField.requestFocusInWindow();
+            }        
+        });
+        b3.addActionListener(new java.awt.event.ActionListener() {
+
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                String equation = equationField.getText();
+                equation = equation.concat("3");
+                equationField.setText(equation);
+                equationField.requestFocusInWindow();
+            }        
+        });
+        b4.addActionListener(new java.awt.event.ActionListener() {
+
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                String equation = equationField.getText();
+                equation = equation.concat("4");
+                equationField.setText(equation);
+                equationField.requestFocusInWindow();
+            }
+        });        
+        b5.addActionListener(new java.awt.event.ActionListener() {
+
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                String equation = equationField.getText();
+                equation = equation.concat("5");
+                equationField.setText(equation);
+                equationField.requestFocusInWindow();
+            }        
+        });        
+        b6.addActionListener(new java.awt.event.ActionListener() {
+
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                String equation = equationField.getText();
+                equation = equation.concat("6");
+                equationField.setText(equation);
+                equationField.requestFocusInWindow();
+            }        
+        });        
+        b7.addActionListener(new java.awt.event.ActionListener() {
+
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                String equation = equationField.getText();
+                equation = equation.concat("7");
+                equationField.setText(equation);
+                equationField.requestFocusInWindow();
+            }        
+        });        
+        b8.addActionListener(new java.awt.event.ActionListener() {
+
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                String equation = equationField.getText();
+                equation = equation.concat("8");
+                equationField.setText(equation);
+                equationField.requestFocusInWindow();
+            }        
+        });        
+        b9.addActionListener(new java.awt.event.ActionListener() {
+
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                String equation = equationField.getText();
+                equation = equation.concat("9");
+                equationField.setText(equation);
+                equationField.requestFocusInWindow();
+            }        
+        });        
+        
+        buttonsPanel.setLayout(new GridLayout(4,1,2,2));
+        
+        buttonsPanel.add(b0);
+        buttonsPanel.add(b1);
+        buttonsPanel.add(b2);
+        buttonsPanel.add(b3);
+        buttonsPanel.add(b4);
+        buttonsPanel.add(b5);
+        buttonsPanel.add(b6);
+        buttonsPanel.add(b7);
+        buttonsPanel.add(b8);
+        buttonsPanel.add(b9);
+        
         buttonsPanel.add(plusButton);
         buttonsPanel.add(subtractButton);
         buttonsPanel.add(divideButton);
         buttonsPanel.add(multiplicationButton);
         buttonsPanel.add(equalsButton);
-        //buttonsPanel.add(clear);
+        buttonsPanel.add(clear);
 
         middlePanel.add(buttonsPanel);
-        bottomPanel.add(clear);
 
         //add the panels to the main frame
         getContentPane().add(topPanel, java.awt.BorderLayout.NORTH);
         getContentPane().add(middlePanel, java.awt.BorderLayout.CENTER);
-        getContentPane().add(bottomPanel, java.awt.BorderLayout.SOUTH);
+        //getContentPane().add(bottomPanel, java.awt.BorderLayout.SOUTH);
 
         fileMenu.setMnemonic('F');
         fileMenu.setText("File");
@@ -218,7 +353,7 @@ public class JCalc extends JFrame {
                 //Just in case somebody tries to do 5x5 or 5X5 and wonders
                 //why it doesn't work.
                 if (char1.equals("X") || char1.equals("x")) {
-                    System.out.println("If you are trying to multiply use * instead.");
+                    equationField.setText("If you are trying to multiply use * instead.");
                 }
                 if (char1.equals("+") || char1.equals("-") || char1.equals("/") || char1.equals("*")) {
                     //This is probably going to go into a class to be called.
@@ -269,7 +404,7 @@ public class JCalc extends JFrame {
                 }
             }
         } catch (Exception e) {
-            //System.out.println("Fatal error has occurred."+e);
+            System.out.println("Fatal error has occurred."+e);
             equationField.setText("Error");
         }
     }
